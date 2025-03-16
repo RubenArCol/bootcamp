@@ -2,28 +2,24 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PruebaController;
 
-//Get
-Route::get('/', function () {
-    return view('welcome');
-});
+////////////////////////////// Get /////////////////////////////////
 
+// estos get usan controladores (recomendado)
+Route::get('/', [HomeController::class]); // este usa automaticamente el unico metodo del controlador (__invoke)
+
+Route::get('/prueba', [PruebaController::class, 'index']);
+
+Route::get('/prueba/{post}/{categoria?}', [PruebaController::class, 'PruebaVariables']);
+
+// estos usan una funcion callback y se instancian en el mismo archivo
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/prueba', function () {
-    return "añado uri de prueba";
-});
-
-Route::get('/prueba/{post}/{categoria?}', function ($post, $categoria = null) {
-
-    if ($categoria){
-        return "aquí se mostraria un post (post {$post}) con categoria $categoria";
-    }
-
-    return "aquí se mostraria un post (post {$post})";
-});
+//////////////////////////////////////////////////////////////////
 
 //Post
 //Put
