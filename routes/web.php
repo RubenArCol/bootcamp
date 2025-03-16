@@ -8,7 +8,7 @@ use App\Http\Controllers\PruebaController;
 ////////////////////////////// Get /////////////////////////////////
 
 // estos get usan controladores (recomendado)
-Route::get('/', [HomeController::class]); // este usa automaticamente el unico metodo del controlador (__invoke)
+Route::get('/', HomeController::class); // este usa automaticamente el unico metodo del controlador (__invoke)
 
 Route::get('/prueba', [PruebaController::class, 'index']);
 
